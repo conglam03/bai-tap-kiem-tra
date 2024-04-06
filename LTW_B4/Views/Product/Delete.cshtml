@@ -1,0 +1,12 @@
+﻿@model LTW_B4.Models.Product
+
+<h1>Xóa - Sản phẩm</h1>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>Bạn có chắc muốn xóa sản phẩm @Model.Name?</p>
+    <div class="form-group">
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a class="btn btn-info" asp-action="Index">Về danh mục</a>
+    </div>
+</form>

@@ -1,0 +1,13 @@
+﻿@model LTW_B4.Models.Product
+<h1>@Model.Name</h1>
+<div>
+    <h3>Price: @Model.Price</h3>
+    <p>@Model.Description</p>
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <img src="@Model.ImageUrl" alt="Product Image" style="max-width: 200px;" />
+    }
+</div>
+<div class="form-group mt-3">
+    <a class="btn btn-info" asp-action="Index">Về danh mục</a>
+</div>

@@ -1,0 +1,35 @@
+﻿@model LTW_B4.Models.Category
+@using Microsoft.AspNetCore.Authorization
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@attribute [Authorize(Policy = "DenyAccessToCustomerCompanyEmployee")]
+@if (!User.IsInRole("Admin"))
+{
+    <p>Access denied. Only administrators are allowed to access this page.</p>
+}
+<h1>Thêm - Danh mục</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Thêm mới" class="btn btn-primary" /> |
+                <a class="btn btn-info" asp-action="Index">Về danh mục</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

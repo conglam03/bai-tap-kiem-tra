@@ -1,0 +1,37 @@
+﻿@model ShoppingCart
+<h2>Your Cart</h2>
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+
+
+
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>
+                <form asp-controller="ShoppingCart" asp-action="UpdateQuantity" method="post">
+                    <input type="hidden" name="productId" value="@item.ProductId" />
+                    <label for="quantity">Số lượng:</label>
+                    <input type="number" id="quantity" name="quantity" value="@item.Quantity" />
+                    <button class="btn btn-primary" type="submit">Cập nhật</button>
+                </form>
+            </td>
+            <td>@item.Price</td>
+            <td>@(item.Price * item.Quantity)</td>
+            <td>
+
+                <a asp-action="RemoveFromCart" asp-route-productId="@item.ProductId">Remove</a>
+                
+
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-action="Checkout" class="btn btn-info"> Đặt hàng</a>

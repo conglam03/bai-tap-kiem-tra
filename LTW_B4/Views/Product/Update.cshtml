@@ -1,0 +1,41 @@
+﻿@model LTW_B4.Models.Product
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h1>Chỉnh sửa - Sản phẩm</h1>
+
+<form asp-action="Update" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" asp-items="@ViewBag.Categories"
+                class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl">Product Image</label>
+        <input type="file" asp-for="ImageUrl" class="form-control" />
+        <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Cập nhật" class="btn btn-primary" /> |
+        <a class="btn btn-info" asp-action="Index">Về danh mục</a>
+    </div>
+</form> 
+
